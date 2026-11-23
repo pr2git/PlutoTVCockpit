@@ -13,7 +13,16 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Screens.ChoiceBox import ChoiceBox
+
+from Screens.ChoiceBox import ChoiceBox as BaseChoiceBox
+
+class ChoiceBox(BaseChoiceBox):
+    def __init__(self, session, title="", list=None, **kwargs):
+        text = kwargs.pop("text", "")
+        if not title and text:
+            title = text
+        super().__init__(session, title=title, list=list, **kwargs)
+
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
